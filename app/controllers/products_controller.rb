@@ -1,6 +1,15 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
 
+  def variant
+    variant = Product.new(variant_id: @product.id, name: @product.name, description: @product.description)
+    if variant.save
+      redirect_to root_path, notice: 'Variants saved'
+    else
+      redirect_to root_path, alert: "Can't save variants"
+    end
+  end
+
   # GET /products or /products.json
   def index
     @products = Product.all
