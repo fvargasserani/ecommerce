@@ -10,7 +10,7 @@ rails g scaffold Product name description:text stock:integer price:float sku
 
 rails g migration CreateJoinTableProductCategory category product
 
-Descomentar ambos index en la migracio creada
+Descomentar ambos index en la migracion creada
 
 rails db:migrate
 
