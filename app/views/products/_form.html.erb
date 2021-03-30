@@ -17,23 +17,27 @@
   </div>
 
   <div class="field">
-    <%= form.label :size %>
-    <%= form.text_field :size %>
-  </div>
-
-  <div class="field">
-    <%= form.label :color %>
-    <%= form.text_field :color %>
-  </div>
-
-  <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description %>
   </div>
 
+  <p>Variants</p>
+  <div id="products">
+    <%= form.fields_for :products do |variants_form| %>
+      <%= render 'variant_fields', :f => variants_form %>
+    <% end %>
+  <div class='links'>
+    <%= link_to 'Add variant', form, :products %>
+  </div>
+  </div>
+
   <div class="field">
-    <%= form.label :stock %>
-    <%= form.number_field :stock %>
+    <%= form.label :categories %>
+      <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+        <%= b.label class:"label-checkbox" do%>
+          <%=b.check_box + b.text%>
+        <%end%>
+      <% end %>
   </div>
 
   <div class="actions">

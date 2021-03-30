@@ -4,9 +4,9 @@ class ProductsController < ApplicationController
   def variant
     variant = Product.new(variant_id: @product.id, name: @product.name, description: @product.description)
     if variant.save
-      redirect_to root_path, notice: 'Variants saved'
+      redirect_to root_path, notice: 'Variant saved'
     else
-      redirect_to root_path, alert: "Can't save variants"
+      redirect_to root_path, alert: "Can't save variant"
     end
   end
 
@@ -73,6 +73,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :size, :color, :description, :stock)
+      params.require(:product).permit(:name, :size, :color, :description, :stock, {category_ids: []})
     end
 end
