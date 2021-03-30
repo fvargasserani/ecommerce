@@ -23,11 +23,11 @@
 
   <p>Variants</p>
   <div id="products">
-    <%= form.fields_for :products do |variants_form| %>
+    <%= form.fields_for :variants do |variants_form| %>
       <%= render 'variant_fields', :f => variants_form %>
     <% end %>
   <div class='links'>
-    <%= link_to 'Add variant', form, :products %>
+    <%= link_to_add_association 'Add variant', form, :variants %>
   </div>
   </div>
 
