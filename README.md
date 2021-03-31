@@ -1,3 +1,15 @@
+# RESPUESTA 6
+
+
+
+# RESPUESTA 7
+
+Se debería eliminar el atributo "price" del modelo OrderVariant (aka OrderItem) y pasarlo al modelo Variant. Esto, dado que el precio puede cambiar en función de la variante del producto. Por ejemplo, una polera talla L puede ser más cara que una polera talla S, dado que usa más tela.
+
+
+
+# RESUMEN VIDEOS Y LECTURA
+
 # PROFUNDIZANDO RELACIONES N A N
 
 rails new ecommerce rails -d=prostgresql

@@ -1,6 +1,15 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
 
+  def subcategory
+    subcategory = Category.new(subcategory_id: @category.id)
+    if subcategory.save
+      redirect_to root_path, notice: 'Subcategory saved!'
+    else
+      redirect_to root_path, alert: "Can't save subcategory"
+    end
+  end
+
   # GET /categories or /categories.json
   def index
     @categories = Category.all

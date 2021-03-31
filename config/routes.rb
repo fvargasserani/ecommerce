@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
   resources :users
+
   resources :orders
-  resources :products do
+
+  resources :products 
+
+  resources :variants
+
+  resources :categories do
     member do
-      post :variant
+      post :subcategory
     end
   end
-  resources :categories
+  
+  root 'products#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

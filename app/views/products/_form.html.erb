@@ -22,14 +22,16 @@
   </div>
 
   <p>Variants</p>
-  <div id="products">
-    <%= form.fields_for :variants do |variants_form| %>
-      <%= render 'variant_fields', :f => variants_form %>
-    <% end %>
-  <div class='links'>
-    <%= link_to_add_association 'Add variant', form, :variants %>
+    <div id="products">
+      <%= form.fields_for :variants do |variants_form| %>
+        <%= render 'variant_fields', :f => variants_form %>
+      <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'Add variant', form, :variants %>
+    </div>
   </div>
-  </div>
+  
+  <br>
 
   <div class="field">
     <%= form.label :categories %>
