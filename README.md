@@ -1,10 +1,11 @@
+
 # RESPUESTA 6
 
-
+Revisar en app/views/products los documentos index y show para ver la lista de productos del catalogo.
 
 # RESPUESTA 7
 
-Se debería eliminar el atributo "price" del modelo OrderVariant (aka OrderItem) y pasarlo al modelo Variant. Esto, dado que el precio puede cambiar en función de la variante del producto. Por ejemplo, una polera talla L puede ser más cara que una polera talla S, dado que usa más tela.
+En lugar de agregar un atributo extra, se debería eliminar el atributo "price" del modelo OrderVariant (aka OrderItem) y pasarlo al modelo Variant. Esto, dado que el precio puede cambiar en función de la variante del producto. Por ejemplo, una polera talla L puede ser más cara que una polera talla S del mismo tipo, dado que usa más tela.
 
 
 

@@ -1,12 +1,14 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   def subcategory
-    subcategory = Category.new(subcategory_id: @category.id)
+    @category = Category.all.find(params[:id])
+    subcategory = Category.new(subcategory_id: @category.id, name: @category.subcategory_name)
     if subcategory.save
-      redirect_to root_path, notice: 'Subcategory saved!'
+      redirect_to categories_path, notice: 'Subcategory was successfully created'
     else
-      redirect_to root_path, alert: "Can't save subcategory"
+      redirect_to categories_path, alert: "Can't save subcategory"
     end
   end
 
@@ -73,6 +75,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name, :subcategory_id)
+      params.require(:category).permit(:name, :subcategory_id, :subcategory_name)
     end
 end
