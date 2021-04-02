@@ -28,19 +28,31 @@ Modelo Payment: belongs_to :discount
 
 5. En la vista index de Payment, escribir el codigo con condiciones 'if', tanto para validar el tipo de usuario (redes sociales o cliente especifico), como para validar el monto de compra. Ejemplo:
 
-   = if User.all.includes(current_user)  #Ejemplo: clientes antiguos ya registrados
-   =     if @discount.percentage == nil && @payment.total > 20000
-   =         @payment.total - (@discount.amount)
-   =     else
-   =         @payment.total - (@discount.percentage)
-   =     end
-   = else 
-   =     if @discount.percentage == nil && @payment.total > 20000
-   =         @payment.total - (@discount.amount)
-   =     else
-   =         @payment.total - (@discount.percentage)
-   =      end
-   = end
+    if User.all.includes(current_user)  #Ejemplo: clientes antiguos ya registrados
+
+        if @discount.percentage == nil && @payment.total > 20000
+
+            @payment.total - (@discount.amount)
+
+        else
+
+            @payment.total - (@discount.percentage)
+
+        end
+
+    else 
+
+        if @discount.percentage == nil && @payment.total > 20000
+
+            @payment.total - (@discount.amount)
+
+        else
+
+            @payment.total - (@discount.percentage)
+
+        end
+        
+    end
 
 
 # RESUMEN VIDEOS Y LECTURA
