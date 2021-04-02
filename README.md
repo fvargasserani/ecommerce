@@ -1,12 +1,46 @@
 
+# RESPUESTA 1
+
+Ver imagen ecommerce_diagram.png en la carpeta principal.
+
 # RESPUESTA 6
 
-Revisar en app/views/products los documentos index y show para ver la lista de productos del catalogo.
+Revisar en app/views/products los documentos index y show para ver la lista de productos del catalogo. Se puede aplicar Bootstrap para mejorar el diseno.
 
 # RESPUESTA 7
 
 En lugar de agregar un atributo extra, se debería eliminar el atributo "price" del modelo OrderVariant (aka OrderItem) y pasarlo al modelo Variant. Esto, dado que el precio puede cambiar en función de la variante del producto. Por ejemplo, una polera talla L puede ser más cara que una polera talla S del mismo tipo, dado que usa más tela.
 
+
+# RESPUESTA 8
+
+1. Ver imagen ecommerce_diagram.png en la carpeta principal.
+
+2. En la terminal, agregar el modelo Discount y referenciarlo a Payment:
+rails g model Discount percentage:float amount:integer
+rails g migration AddDiscountRefToPayment discount:references
+
+3. En ambos modelos agregar referencias:
+Modelo Discount: has_many :payments
+Modelo Payment: belongs_to :discount
+
+4. Instanciar @discount en el controlador de Payment.
+
+5. En la vista index de Payment, escribir el codigo con condiciones 'if', tanto para validar el tipo de usuario (redes sociales o cliente especifico), como para validar el monto de compra. Ejemplo:
+
+    if User.all.includes(current_user)  #Ejemplo: clientes antiguos ya registrados
+        if @discount.percentage == nil && @payment.total > 20000
+            @payment.total - (@discount.amount)
+        else
+            @payment.total - (@discount.percentage)
+        end
+    else 
+        if @discount.percentage == nil && @payment.total > 20000
+            @payment.total - (@discount.amount)
+        else
+            @payment.total
+        end
+    end
 
 
 # RESUMEN VIDEOS Y LECTURA
