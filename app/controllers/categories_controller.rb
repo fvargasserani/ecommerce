@@ -1,10 +1,9 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ show edit update destroy ]
-  skip_before_action :verify_authenticity_token
+  before_action :set_category, only: %i[ show edit update destroy subcategory]
 
-  def subcategory
-    @category = Category.all.find(params[:id])
-    subcategory = Category.new(subcategory_id: @category.id, name: @category.subcategory_name)
+  def subcategories
+    @categories = Category.all
+    subcategory = Category.new(subcategory_id: @category.id)
     if subcategory.save
       redirect_to categories_path, notice: 'Subcategory was successfully created'
     else
@@ -15,6 +14,7 @@ class CategoriesController < ApplicationController
   # GET /categories or /categories.json
   def index
     @categories = Category.all
+    @category = Category.where(id: params[:id])
   end
 
   # GET /categories/1 or /categories/1.json
@@ -24,6 +24,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    @categories = Category.all
   end
 
   # GET /categories/1/edit
